@@ -177,3 +177,9 @@ pyrightconfig.json
 
 # 내가만든 가상환경
 .ven
+
+# 데이터셋 및 모델 가중치 파일 제외
+*.mat
+**/data/
+*.pt
+*.pth
