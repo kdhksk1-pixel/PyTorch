@@ -34,6 +34,7 @@ def Train(model, train_DL, criterion, optimizer, EPOCH):
     
   return loss_history
 
+'''
 # 테스트 함수
 def Test(model, test_DL):
   model.eval()
@@ -54,6 +55,30 @@ def Test(model, test_DL):
     accuracy_e = rcorrect/len(test_DL.dataset) * 100
 
   print(f'Test accuracy : {rcorrect} / {len(test_DL.dataset)} ({accuracy_e:.1f} %)')
+  
+  return round(accuracy_e, 1)
+'''
+
+# 테스트 함수
+def Accuracy(model, DL, name):
+  model.eval()
+
+  with torch.no_grad():
+    rcorrect = 0    
+    for x_batch, y_batch in DL :
+      x_batch = x_batch.to(DEVICE)
+      y_batch = y_batch.to(DEVICE)
+
+      y_hat = model(x_batch)
+
+      pred = y_hat.argmax(dim=1)
+
+      corrects_b = torch.sum(pred == y_batch).item()
+      rcorrect += corrects_b
+
+    accuracy_e = rcorrect/len(DL.dataset) * 100
+
+  print(f'{name} Accuracy : {rcorrect} / {len(DL.dataset)} ({accuracy_e:.1f} %)')
   
   return round(accuracy_e, 1)
 
