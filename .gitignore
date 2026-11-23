@@ -182,4 +182,4 @@ pyrightconfig.json
 *.mat
 **/data/
 *.pt
-*.pth
+*.python
